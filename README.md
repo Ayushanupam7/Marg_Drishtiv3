@@ -26,8 +26,8 @@ The platform provides automated detection and visual targeting of **Emergency Pr
 ```mermaid
 flowchart TD
     subgraph INGESTION["1. Video & Stream Ingestion"]
-        V[Video Upload MP4 / RTSP CCTV Feed]
-        CAP[OpenCV VideoCapture & Frame Buffer]
+        V["Video Upload MP4 / RTSP CCTV Feed"]
+        CAP["OpenCV VideoCapture & Frame Buffer"]
         V --> CAP
     end
 
@@ -48,14 +48,14 @@ flowchart TD
         
         LANE --> EM_DEC
         EM_DEC -->|On Detection| SNAP
-        SNAP -->|JPEG Dossier| SNAP_DIR[(outputs/snapshots/)]
+        SNAP -->|JPEG Dossier| SNAP_DIR[("outputs/snapshots/")]
         EM_DEC --> PREEMPT
     end
 
     subgraph BACKEND_STORAGE["4. FastAPI Engine & Persistence Layer"]
-        DB[(SQLite - margdrishti.db)]
-        WS[WebSocket Telemetry Hub - /ws/analysis/{id}]
-        REST[FastAPI REST Services - Router API Layer]
+        DB[("SQLite - margdrishti.db")]
+        WS["WebSocket Telemetry Hub (/ws/analysis/:id)"]
+        REST["FastAPI REST Services - Router API Layer"]
         
         PREEMPT --> DB
         LANE --> DB
